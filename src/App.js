@@ -1,42 +1,29 @@
 import Button from "@material-ui/core/Button";
+import React from "react";
 
-function Food({name, picture}) {
-  console.log(name);
-  return (
-    <div>
-      <h2>i love movie {name}</h2>
-      <img src={picture} alt={name}/>
-    </div>
-  )
-}
-const foodIlike = [
-  {
-    id: 1,
-    name: "kimchi",
-    image:
-      "https://www.davidlebovitz.com/wp-content/uploads/2008/03/kimchi-recipe-7.jpg",
-  },
-  {
-    id: 2,
-    name: "ramen",
-    image:
-      "https://mblogthumb-phinf.pstatic.net/MjAyMDA1MjZfMjcw/MDAxNTkwNDgxNTI0OTI5.cElkTRG2bnYaUn0RlCq58_227T8KT_g2H1riUFYdYmYg.ZxnDFMZfaOq-jt4Qa5lk2gz3kr1Z-OG7HTVRiLYGEsAg.JPEG.naverschool/GettyImages-647266676.jpg?type=w800",
-  },
-];
+class App extends React.Component {
+  state = {
+    count: 0,
+  };
 
-function App() {
-  return (
-    <div>
-      <h1>Hello World</h1>
-      <Button variant="contained" color="primary">
-        Hello
-      </Button>
+  add = () => {
+    console.log('add')
+    this.setState({count : this.state.count + 1}) 
+  }
 
-      {foodIlike.map((dish) => (
-        <Food key={dish.id} name={dish.name} picture={dish.image} />
-      ))}
-    </div>
-  );
+  minus = () => {
+    console.log('minus')
+    this.setState(current => ({count: current.count - 1}))
+  }
+  render() {
+    return (
+      <div>
+        <h1>The number is : {this.state.count}</h1>
+        <Button onClick={this.add} variant='contained' color='primary'>Add</Button>
+        <Button onClick={this.minus} variant='contained' color='secondary'>Minus</Button>
+      </div>
+    )
+  }
 }
 
 export default App;
